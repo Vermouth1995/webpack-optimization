@@ -24,6 +24,6 @@ Webpack 的运行流程是一个串行的过程,从启动到结束会依次执�
 ![编译流程](https://user-gold-cdn.xitu.io/2019/11/12/16e6020bf133fb9d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 
-参考文献:
-1.https://webpack.js.org/
+参考文献:<br>
+1.https://webpack.js.org/<br>
 2.https://my.oschina.net/incess/blog/3159342
