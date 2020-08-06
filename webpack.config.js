@@ -20,16 +20,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, "src/index.html"),
-			filename: "index.html",
-			inject: true,
-			minify: {
-				html5: true,
-				collapseWhitespace: true,
-				preserveLineBreaks: false,
-				minifyCSS: true,
-				minifyJS: true,
-				removeComments: false
-			}
+			filename: "index.html"
 		})
 	]
 };
