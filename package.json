@@ -4,15 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
     "@webpack-cli/generate-plugin": "^0.1.9",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
     "bluebird": "^3.7.2",
     "html-webpack-plugin": "^4.3.0",
     "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-defaults": "^4.0.0"

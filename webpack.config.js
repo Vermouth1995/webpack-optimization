@@ -1,21 +1,35 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-const resolve = dir => require("path").join(__dirname, dir);
+const path = require("path");
 
 module.exports = {
+	mode: "production",
 	entry: "./src/index.js",
 	output: {
-		path: resolve("dist"),
+		path: path.join(__dirname, "dist"),
 		filename: "bundle.js"
 	},
 	module: {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				include: [resolve("src")],
+				include: [path.join(__dirname, "src")],
 				use: "babel-loader"
 			}
 		]
 	},
-	plugins: [new HtmlWebpackPlugin()]
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, "src/index.html"),
+			filename: "index.html",
+			inject: true,
+			minify: {
+				html5: true,
+				collapseWhitespace: true,
+				preserveLineBreaks: false,
+				minifyCSS: true,
+				minifyJS: true,
+				removeComments: false
+			}
+		})
+	]
 };
