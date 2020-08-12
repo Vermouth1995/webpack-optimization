@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Jarvis = require("webpack-jarvis");
 
 module.exports = {
@@ -13,8 +14,15 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
+				use: "babel-loader",
 				include: [path.join(__dirname, "src")],
-				use: "babel-loader"
+				exclude: [path.join(__dirname, "node_modules")]
+			},
+			{
+				test: /\.css$/,
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
+				include: [path.join(__dirname, "src")],
+				exclude: [path.join(__dirname, "node_modules")]
 			}
 		]
 	},
@@ -22,6 +30,9 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, "src/index.html"),
 			filename: "index.html"
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[name].css"
 		}),
 		new Jarvis({
 			watchOnly: false,
