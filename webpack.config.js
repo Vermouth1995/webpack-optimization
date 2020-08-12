@@ -10,19 +10,20 @@ module.exports = {
 		path: path.join(__dirname, "dist"),
 		filename: "bundle.js"
 	},
+	resolve: {
+		modules: [path.resolve(__dirname, "node_modules")]
+	},
 	module: {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
 				use: "babel-loader",
-				include: [path.join(__dirname, "src")],
-				exclude: [path.join(__dirname, "node_modules")]
+				include: [path.join(__dirname, "src")]
 			},
 			{
 				test: /\.css$/,
 				use: [MiniCssExtractPlugin.loader, "css-loader"],
-				include: [path.join(__dirname, "src")],
-				exclude: [path.join(__dirname, "node_modules")]
+				include: [path.join(__dirname, "src")]
 			}
 		]
 	},
@@ -35,7 +36,7 @@ module.exports = {
 			filename: "[name].css"
 		}),
 		new Jarvis({
-			watchOnly: false,
+			watchOnly: true,
 			port: 10086
 		})
 	]
