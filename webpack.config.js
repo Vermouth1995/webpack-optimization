@@ -1,5 +1,6 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Jarvis = require("webpack-jarvis");
 
 module.exports = {
 	mode: "production",
@@ -21,6 +22,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, "src/index.html"),
 			filename: "index.html"
+		}),
+		new Jarvis({
+			watchOnly: false,
+			port: 10086
 		})
 	]
 };
