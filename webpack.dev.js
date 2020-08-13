@@ -1,13 +1,14 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Jarvis = require("webpack-jarvis");
 
 module.exports = {
-	mode: "production",
+	mode: "development",
+	watch: true,
 	entry: "./src/index.js",
 	output: {
-		path: path.join(__dirname, "dist"),
+		path: path.resolve(__dirname, "dist"),
 		filename: "bundle.js"
 	},
 	resolve: {
@@ -18,26 +19,25 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				use: "babel-loader",
-				include: [path.join(__dirname, "src")]
+				include: [path.resolve(__dirname, "src")]
 			},
 			{
 				test: /\.css$/,
 				use: [MiniCssExtractPlugin.loader, "css-loader"],
-				include: [path.join(__dirname, "src")]
+				include: [path.resolve(__dirname, "src")]
 			}
 		]
 	},
 	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, "src/index.html"),
+			template: path.resolve(__dirname, "src/index.html"),
 			filename: "index.html"
 		}),
-		new MiniCssExtractPlugin({
-			filename: "[name].css"
-		}),
-		new Jarvis({
-			watchOnly: true,
-			port: 10086
-		})
-	]
+		new MiniCssExtractPlugin()
+	],
+	devServer: {
+		contentBase: "./dist",
+		hot: true
+	}
 };
