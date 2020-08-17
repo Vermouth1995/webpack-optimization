@@ -61,8 +61,6 @@ module.exports = {
 ![](https://user-images.githubusercontent.com/17866208/89979103-83f5f080-dca1-11ea-8d64-cea6ea7c7b38.png)
 
 #### 二、优化手段
-
-##### 构建速度优化
 1、使用高版本 webpack<br><br>
 ![](https://user-images.githubusercontent.com/17866208/90355412-d6a72200-e07e-11ea-8700-9ea26d96ab78.png)
 
@@ -191,7 +189,3 @@ module.exports = {
 - 预编译资源模块，使用 DLLPlugin 分包，DllReferencePlugin对 manifest.json 引用<br>
 
 原理：将 react，react-dom 等公共基础包打包成一个文件
-
-
-
-##### 构建体积优化
