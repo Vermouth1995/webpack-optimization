@@ -25,7 +25,7 @@ const webpackConfig = smp.wrap({
 ```
 1、分析记录整个打包过程总耗时<br>
 2、分析记录每个插件和 loader 的耗时情况<br><br>
-![](https://raw.githubusercontent.com/stephencookdev/speed-measure-webpack-plugin/HEAD/preview.png)
+![](https://user-images.githubusercontent.com/17866208/90364067-58ef1080-e096-11ea-9d25-50bb3796502c.png)
 
 ##### 体积分析
 - 使用 webpack-bundle-analyzer<br>
