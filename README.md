@@ -65,7 +65,7 @@ module.exports = {
 ![](https://user-images.githubusercontent.com/17866208/90355412-d6a72200-e07e-11ea-8700-9ea26d96ab78.png)
 
 2、多进程并行解析资源模块<br>
-- thread-loader
+- thread-loader<br>
 
 原理：每次 webpack 解析一个模块，thread-loader 会将它及它的依赖分配给 worker 进程。
 ```javascript
@@ -88,7 +88,7 @@ module.exports = {
 };
 ```
 
-- HappyPack
+- HappyPack<br>
 
 原理：每次 webpack 解析一个模块，HappyPack 会将它及它的依赖分配到 worker 进程。
 ```javascript
@@ -189,3 +189,36 @@ module.exports = {
 - 预编译资源模块，使用 DLLPlugin 分包，DllReferencePlugin对 manifest.json 引用<br>
 
 原理：将 react，react-dom 等公共基础包打包成一个文件
+```javascript
+const path = require('path');
+const webpack = require('webpack');
+module.exports = {
+    entry: {
+        library: ['vue','vuex','vue-router']
+    },
+    output: {
+        filename: '[name]_[chunkhash].dll.js',
+        path: path.resolve(__dirname,'./build/library'),
+        library: '[name]'
+    },
+    plugins: [
+        new webpack.DllPlugin({
+            name: '[name]_[hash]',
+            path: resolve(__dirname,'./build/library/[name].json')
+        })
+    ]
+}
+```
+```javascript
+module.exports = {
+    ···
+    plugins: [
+        new webpack.DllReferencePlugin({
+            manifest: require('./build/library/library.json')
+        }),
+    ]
+    ···
+}
+```
+
+5、缓存<br>
