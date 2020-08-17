@@ -114,5 +114,57 @@ module.exports = {
 ```
 
 3、多进程并行压缩代码<br>
+- 使用 webpack-parallel-uglify-plugin 插件
+```javascript
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+module.exports = {
+    ···
+    plugins: [
+        new ParallelUglifyPlugin({
+            uglifyJS: {
+                output: {
+                    beautify: false,
+                    comments: false
+				},
+                compress: {
+                    warnings: false,
+                    drop_console: true,
+                    collapse_vars: true
+				}
+            }
+        })
+    ]
+    ···
+}
+```
+
+- 使用 uglify-webpack-plugin 插件，开启 parallel 参数（备注：之前 webpack 版本使用，不支持压缩ES6的语法）
+```javascript
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+module.exports = {
+    ···
+    optimization: {
+        minimizer: [new UglifyJsPlugin()],
+    }
+    ···
+};
+```
+
+- 使用 terser-webpack-plugin 插件，开启 parallel 参数（推荐使用，支持压缩ES6的语法）
+```javascript
+const TerserPlugin = require('terser-webpack-plugin');
+module.exports = {
+    ···
+    optimization: {
+        minimizer: true,
+    },
+    minimizer: [
+        new TerserPlugin({
+            parallel: true
+        })
+    ]
+    ···
+};
+```
 
 ##### 构建体积优化
