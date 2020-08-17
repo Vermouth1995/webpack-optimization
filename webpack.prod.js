@@ -1,9 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const Jarvis = require("webpack-jarvis");
 
-module.exports = {
+const smp = new SpeedMeasureWebpackPlugin();
+
+module.exports = smp.wrap({
 	mode: "production",
 	entry: "./src/index.js",
 	output: {
@@ -33,9 +37,10 @@ module.exports = {
 			filename: "index.html"
 		}),
 		new MiniCssExtractPlugin(),
-		new Jarvis({
-			watchOnly: true,
-			port: 10086
-		})
+		new BundleAnalyzerPlugin()
+		// new Jarvis({
+		// 	watchOnly: true,
+		// 	port: 10086
+		// })
 	]
-};
+});
