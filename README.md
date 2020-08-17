@@ -169,7 +169,8 @@ module.exports = {
 
 4、分包
 - 使用 html-webpack-externals-plugin，设置 externals<br>
-将 react，react-dom 等公共基础包通过 cdn 方式引入，不打入 bundle 中
+
+原理：将 react，react-dom 等公共基础包通过 cdn 方式引入，不打入 bundle 中
 ```javascript
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 module.exports = {
@@ -188,7 +189,8 @@ module.exports = {
 ```
 
 - 预编译资源模块，使用 DLLPlugin 分包，DllReferencePlugin对 manifest.json 引用<br>
-将 react，react-dom 等公共基础包打包成一个文件
+
+原理：将 react，react-dom 等公共基础包打包成一个文件
 
 
 
