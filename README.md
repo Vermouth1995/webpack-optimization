@@ -138,7 +138,7 @@ module.exports = {
 }
 ```
 
-- 使用 uglify-webpack-plugin 插件，开启 parallel 参数（备注：之前 webpack 版本使用，不支持压缩ES6的语法）
+- 使用 uglify-webpack-plugin 插件，开启 parallel 参数（老的 webpack 版本使用，不支持压缩ES6的语法）
 ```javascript
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
@@ -150,7 +150,7 @@ module.exports = {
 };
 ```
 
-- 使用 terser-webpack-plugin 插件，开启 parallel 参数（推荐使用，支持压缩ES6的语法）
+- 使用 terser-webpack-plugin 插件，开启 parallel 参数（新的 webpack 版本使用，支持压缩ES6的语法）
 ```javascript
 const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
@@ -166,5 +166,30 @@ module.exports = {
     ···
 };
 ```
+
+4、分包
+- 使用 html-webpack-externals-plugin，设置 externals<br>
+将 react，react-dom 等公共基础包通过 cdn 方式引入，不打入 bundle 中
+```javascript
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
+module.exports = {
+    ···
+	plugins: [
+        new HtmlWebpackExternalsPlugin({
+            externals: [{
+                module: 'react',
+                entry: 'https://unpkg.com/react@16/umd/react.development.js',
+                global: 'React'
+            }]
+        })
+    ]
+    ···
+};
+```
+
+- 预编译资源模块，使用 DLLPlugin 分包，DllReferencePlugin对 manifest.json 引用<br>
+将 react，react-dom 等公共基础包打包成一个文件
+
+
 
 ##### 构建体积优化
