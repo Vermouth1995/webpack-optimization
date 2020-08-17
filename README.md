@@ -15,10 +15,10 @@
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 const webpackConfig = smp.wrap({
-	plugins: [
-		new MyPlugin(),
-		new MyOtherPlugin()
-	]
+    plugins: [
+        new MyPlugin(),
+        new MyOtherPlugin()
+    ]
 });
 ```
 1、分析记录整个打包过程总耗时<br>
@@ -30,9 +30,9 @@ const webpackConfig = smp.wrap({
 ```javascript
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-	plugins: [
-		new BundleAnalyzerPlugin()
-	]
+    plugins: [
+        new BundleAnalyzerPlugin()
+    ]
 }
 ```
 构建完成后会自动显示文件大小<br>
@@ -44,9 +44,9 @@ module.exports = {
 ```javascript
 const Jarvis = require("webpack-jarvis");
 plugins: [
-	new Jarvis({
-		port: 1337 // optional: set a port
-	})
+    new Jarvis({
+        port: 1337 // optional: set a port
+    })
 ];
 ```
 更美观<br><br>
