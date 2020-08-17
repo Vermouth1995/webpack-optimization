@@ -194,7 +194,7 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
     entry: {
-        library: ['vue','vuex','vue-router']
+        library: ['react','react-dom']
     },
     output: {
         filename: '[name]_[chunkhash].dll.js',
@@ -215,7 +215,7 @@ module.exports = {
     plugins: [
         new webpack.DllReferencePlugin({
             manifest: require('./build/library/library.json')
-        }),
+        })
     ]
     ···
 }
