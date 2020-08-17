@@ -67,7 +67,8 @@ module.exports = {
 ![](https://user-images.githubusercontent.com/17866208/90355412-d6a72200-e07e-11ea-8700-9ea26d96ab78.png)
 
 2、多进程并行解析资源模块<br>
-- thread-loader<br>
+- thread-loader
+
 原理：每次 webpack 解析一个模块，thread-loader 会将它及它的依赖分配给 worker 进程。
 ```javascript
 module.exports = {
@@ -89,7 +90,8 @@ module.exports = {
 };
 ```
 
-- HappyPack<br>
+- HappyPack
+
 原理：每次 webpack 解析一个模块，HappyPack 会将它及它的依赖分配到 worker 进程。
 ```javascript
 const HappyPack = require('happypack');
