@@ -292,9 +292,12 @@ module.exports = {
         mainFields: ['main'],
         extensions: ['.js'],
         alias: {
-            react: path.resolve(__dirname, './node_modules/react/dist/react.min.js')
+            'react': path.resolve(__dirname, './node_modules/react/umd/react.production.min.js'),
+            'react-dom': path.resolve(__dirname, './node_modules/react-dom/umd/react.production.min.js')
         }
     }
     ···
 };
 ```
+
+7、Tree Shaking<br>

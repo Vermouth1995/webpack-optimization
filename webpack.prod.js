@@ -49,6 +49,9 @@ module.exports = smp.wrap({
 		new MiniCssExtractPlugin(),
 		new BundleAnalyzerPlugin(),
 		new HardSourceWebpackPlugin()
+		// new webpack.DllReferencePlugin({
+		//     manifest: require('./build/library/library.json')
+		// })
 		// new Jarvis({
 		// 	watchOnly: true,
 		// 	port: 10086
