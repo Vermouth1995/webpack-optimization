@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const Jarvis = require("webpack-jarvis");
+const TerserPlugin = require("terser-webpack-plugin");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 const smp = new SpeedMeasureWebpackPlugin();
 
@@ -21,7 +23,7 @@ module.exports = smp.wrap({
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				use: "babel-loader",
+				use: "babel-loader?cacheDirectory=true",
 				include: [path.resolve(__dirname, "src")]
 			},
 			{
@@ -31,13 +33,22 @@ module.exports = smp.wrap({
 			}
 		]
 	},
+	optimization: {
+		minimizer: [
+			new TerserPlugin({
+				parallel: true,
+				cache: true
+			})
+		]
+	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src/index.html"),
 			filename: "index.html"
 		}),
 		new MiniCssExtractPlugin(),
-		new BundleAnalyzerPlugin()
+		new BundleAnalyzerPlugin(),
+		new HardSourceWebpackPlugin()
 		// new Jarvis({
 		// 	watchOnly: true,
 		// 	port: 10086

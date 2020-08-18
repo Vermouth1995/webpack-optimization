@@ -154,18 +154,17 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
     ···
     optimization: {
-        minimizer: true,
-    },
-    minimizer: [
-        new TerserPlugin({
-            parallel: true
-        })
-    ]
+        minimizer: [
+            new TerserPlugin({
+                parallel: true
+            })
+        ],
+    }
     ···
 };
 ```
 
-4、分包
+4、分包<br>
 - 使用 html-webpack-externals-plugin，设置 externals<br>
 
 原理：将 react，react-dom 等公共基础包通过 cdn 方式引入，不打入 bundle 中
@@ -221,4 +220,46 @@ module.exports = {
 }
 ```
 
-5、缓存<br>
+5、缓存（提升二次构建速度）<br>
+- babel-loader 开启缓存
+```javascript
+module.exports = {
+    ···
+	module: {
+        rules: [{
+            test: /\.js$/,
+            use: [ 'babel-loader?cacheDirectory=true' ]
+        }]
+    }
+    ···
+};
+```
+
+- terset-webpack-plugin 开启缓存
+```javascript
+const TerserPlugin = require('terser-webpack-plugin');
+module.exports = {
+    ···
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                parallel: true,
+                cache: true
+            })
+        ],
+    }
+    ···
+};
+```
+
+- 使用 cache-loader 或者 hard-source-webpack-plugin
+```javascript
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+module.exports = {
+    ···
+    plugins: [ new HardSourceWebpackPlugin() ]
+    ···
+};
+```
+
+6、缩小构建目标<br>
