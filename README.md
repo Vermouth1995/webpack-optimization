@@ -293,7 +293,7 @@ module.exports = {
         extensions: ['.js'],
         alias: {
             'react': path.resolve(__dirname, './node_modules/react/umd/react.production.min.js'),
-            'react-dom': path.resolve(__dirname, './node_modules/react-dom/umd/react.production.min.js')
+            'react-dom': path.resolve(__dirname, './node_modules/react-dom/umd/react-dom.production.min.js')
         }
     }
     ···
@@ -301,3 +301,7 @@ module.exports = {
 ```
 
 7、Tree Shaking<br>
+
+8、图片压缩<br>
+
+9、动态 polyfill 服务<br>
