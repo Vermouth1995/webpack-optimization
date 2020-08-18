@@ -1,4 +1,4 @@
-### 构建速度及体积优化策略
+### webpack 构建速度及体积优化策略
 
 #### 一、统计分析
 
@@ -263,3 +263,38 @@ module.exports = {
 ```
 
 6、缩小构建目标<br>
+- 尽可能少的构建模块
+```javascript
+module.exports = {
+    ···
+	module: {
+        rules: [{
+            test: /\.js$/,
+            use: [ 'babel-loader' ],
+            exclude: 'node_modules'
+        }]
+    }
+    ···
+};
+```
+
+- 减少文件搜索范围<br>
+
+（1）优化 resolve.modules 配置（减少模块搜索层级）<br>
+（2）优化 resolve.mainFields 配置<br>
+（3）优化 resolve.extensions 配置<br>
+（4）合理使用 alias
+```javascript
+module.exports = {
+    ···
+    resolve: {
+        modules: [path.resolve(__dirname, 'node_modules')],
+        mainFields: ['main'],
+        extensions: ['.js'],
+        alias: {
+            react: path.resolve(__dirname, './node_modules/react/dist/react.min.js')
+        }
+    }
+    ···
+};
+```
