@@ -204,7 +204,7 @@ module.exports = {
     plugins: [
         new webpack.DllPlugin({
             name: '[name]_[hash]',
-            path: resolve(__dirname,'./build/library/[name].json')
+            path: path.resolve(__dirname,'./build/library/[name].json')
         })
     ]
 }
