@@ -74,14 +74,7 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js$/,
-            use: [{
-                loader: 'thread-loader',
-                options: {
-                    workers: 3
-                }
-            },
-            'babel-loader'
-            ]
+            use: [ 'thread-loader', 'babel-loader' ]
         }]
     }
     ···
@@ -316,12 +309,10 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 module.exports = {
     ···
     module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
-            },
-        ]
+        rules: [{
+            test: /\.css$/,
+            use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+        }]
     },
     plugins: [
         new MiniCssExtractPlugin({
