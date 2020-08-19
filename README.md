@@ -327,6 +327,7 @@ module.exports = {
 ```
 
 8、图片压缩<br>
+- 配置 image-webpack-loader
 ```javascript
 module.exports = {
     ···
@@ -343,5 +344,3 @@ module.exports = {
    ···
 };
 ```
-
-9、动态 polyfill 服务<br>
