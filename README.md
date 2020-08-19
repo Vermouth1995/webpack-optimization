@@ -300,7 +300,12 @@ module.exports = {
 };
 ```
 
-7、Tree Shaking<br>
+7、开启 tree-shaking<br>
+- 什么是 tree-shaking
+> 通过工具"摇"我们的 js 文件，将其中用不到的代码"摇"掉，是一个性能优化的范畴。具体来说，在 webpack 项目中，有一个入口文件，相当于一棵树的主干，入口文件有很多依赖的模块，相当于树枝。实际情况中，虽然依赖了某个模块，但其实只使用其中的某些功能。通过 tree-shaking，将没有使用的模块摇掉，这样来达到删除无用代码的目的。
+
+- 怎么使用<br>
+webpack 默认支持，.babelrc 文件设置 ``modules: false`` 即可。（production mode 下默认开启）
 
 8、图片压缩<br>
 
