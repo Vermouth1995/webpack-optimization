@@ -108,7 +108,7 @@ module.exports = {
         })
     ]
     ···
-}
+};
 ```
 
 3、多进程并行压缩代码<br>
@@ -133,7 +133,7 @@ module.exports = {
         })
     ]
     ···
-}
+};
 ```
 
 - 使用 uglify-webpack-plugin 插件，开启 parallel 参数（老的 webpack 版本使用，不支持压缩ES6的语法）
@@ -206,7 +206,7 @@ module.exports = {
             path: path.resolve(__dirname,'./build/library/[name].json')
         })
     ]
-}
+};
 ```
 ```javascript
 module.exports = {
@@ -217,7 +217,7 @@ module.exports = {
         })
     ]
     ···
-}
+};
 ```
 
 5、缓存（提升二次构建速度）<br>
@@ -314,6 +314,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 module.exports = {
+    ···
     module: {
         rules: [
             {
@@ -330,9 +331,26 @@ module.exports = {
             paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`,  { nodir: true }),
         })
     ]
+    ···
 };
 ```
 
 8、图片压缩<br>
+```javascript
+module.exports = {
+    ···
+    rules: [{
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+            'file-loader',
+            {
+                loader: 'image-webpack-loader',
+                options: { disable: true }
+            },
+        ],
+    }]
+   ···
+};
+```
 
 9、动态 polyfill 服务<br>
