@@ -15,12 +15,12 @@
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const smp = new SpeedMeasurePlugin();
 const webpackConfig = smp.wrap({
-    ...
+    ···
     plugins: [
         new MyPlugin(),
         new MyOtherPlugin()
     ]
-    ...
+    ···
 });
 ```
 1、分析记录整个打包过程总耗时<br>
@@ -32,11 +32,11 @@ const webpackConfig = smp.wrap({
 ```javascript
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-    ...
+    ···
     plugins: [
         new BundleAnalyzerPlugin()
     ]
-    ...
+    ···
 };
 ```
 构建完成后会自动显示文件大小<br>
@@ -48,13 +48,13 @@ module.exports = {
 ```javascript
 const Jarvis = require('webpack-jarvis');
 module.exports = {
-    ...
+    ···
     plugins: [
         new Jarvis({
             port: 1337 // optional: set a port
         })
     ]
-    ...
+    ···
 };
 ```
 好看！<br><br>
@@ -70,7 +70,7 @@ module.exports = {
 原理：每次 webpack 解析一个模块，thread-loader 会将它及它的依赖分配给 worker 进程。
 ```javascript
 module.exports = {
-    ...
+    ···
     module: {
         rules: [{
             test: /\.js$/,
@@ -84,7 +84,7 @@ module.exports = {
             ]
         }]
     }
-    ...
+    ···
 };
 ```
 
